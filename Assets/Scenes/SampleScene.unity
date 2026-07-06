@@ -235,9 +235,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 148310736}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 342d01552a79f86499a0c43f256366df, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c0c61828f923ea46a4aa6be5a22e0a1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ConnectionMenu
+  m_EditorClassIdentifier: Assembly-CSharp::AuthBootstrap
+  m_SignInOnStart: 1
+  m_EnvironmentName: production
+  m_Profile: 
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0

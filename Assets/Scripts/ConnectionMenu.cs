@@ -37,8 +37,8 @@ public class ConnectionMenu : MonoBehaviour
     {
         Debug.Log($"[ConnectionMenu] 클라이언트 끊김 {clientId}");
     }
-           private void OnGUI()
-        {
+    private void OnGUI()
+    {
             if (m_NetworkManager == null)
             {
                 GUILayout.BeginArea(new Rect(10, 10, 320, 60));

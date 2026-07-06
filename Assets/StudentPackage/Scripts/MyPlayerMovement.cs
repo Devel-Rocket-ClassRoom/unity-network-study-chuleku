@@ -1,4 +1,5 @@
 using System.Collections;
+using Cysharp.Threading.Tasks;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -54,18 +55,39 @@ namespace NetworkStudy.Student
             {
                 m_MoveSpeed = 5f;
             }
-            if(keyboard.spaceKey.wasPressedThisFrame)
+            // if(keyboard.spaceKey.wasPressedThisFrame)
+            // {
+            //     if(!isJump)
+            //     Jump().Forget();
+            // }
+            if(keyboard.spaceKey.isPressed)
             {
                 if(!isJump)
-                StartCoroutine(Jump());
+                Jump().Forget();
             }
             
             
             transform.Rotate(0f,turn*m_RotateSpeed*Time.deltaTime,0f);
             transform.Translate(0f,0f,move*MoveSpeed*Time.deltaTime);
         }
-
-        private IEnumerator Jump()
+        // private IEnumerator Jump()
+        // {
+        //     isJump = true;
+        //     float t = 0;
+        //     float jumpduration = 0.5f;
+        //     while(t<1f)
+        //     {
+        //         t += Time.deltaTime/jumpduration;
+        //         float height = Mathf.Sin(t * Mathf.PI) * m_JumpForce;
+        //         Vector3 CurrentPos = transform.position;
+        //         transform.position = new Vector3(CurrentPos.x,height,CurrentPos.z);
+        //         yield return null;
+        //     }
+        //     Vector3 pos = transform.position;
+        //     transform.position = new Vector3(pos.x,0f,pos.z);
+        //     isJump = false;
+        // }
+        private async UniTask Jump()
         {
             isJump = true;
             float t = 0;
@@ -76,11 +98,11 @@ namespace NetworkStudy.Student
                 float height = Mathf.Sin(t * Mathf.PI) * m_JumpForce;
                 Vector3 CurrentPos = transform.position;
                 transform.position = new Vector3(CurrentPos.x,height,CurrentPos.z);
-                yield return null;
+                await UniTask.Yield();
             }
             Vector3 pos = transform.position;
             transform.position = new Vector3(pos.x,0f,pos.z);
             isJump = false;
-        }
-    }
+        } 
+    }  
 }
